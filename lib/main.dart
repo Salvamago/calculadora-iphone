@@ -289,7 +289,7 @@ class _CalculadoraIPhoneState extends State<CalculadoraIPhone> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               // PANTALLA DE RESULTADOS
               Expanded(
@@ -328,129 +328,171 @@ class _CalculadoraIPhoneState extends State<CalculadoraIPhone> {
                 ),
               ),
 
-              // TECLADO ADAPTATIVO
-              LayoutBuilder(
-                builder: (context, constraints) {
-                  double alturaBoton =
-                      MediaQuery.of(context).size.height * 0.085;
-                  if (alturaBoton > 85) alturaBoton = 85;
+              // TECLADO ADAPTATIVO REFORMADO
+              Expanded(
+                child: LayoutBuilder(
+                  builder: (context, constraints) {
+                    // Calculamos la altura dinámica proporcional disponible en pantalla
+                    double alturaBoton = constraints.maxHeight * 0.16;
+                    if (alturaBoton > 85) alturaBoton = 85;
 
-                  return Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Row(
-                        children: [
-                          _crearBoton(
-                            _display == '0' ? 'AC' : 'C',
-                            grisClaro,
-                            Colors.black,
-                            alturaBoton,
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              _crearBoton(
+                                _display == '0' ? 'AC' : 'C',
+                                grisClaro,
+                                Colors.black,
+                                alturaBoton,
+                              ),
+                              _crearBoton(
+                                '+/-',
+                                grisClaro,
+                                Colors.black,
+                                alturaBoton,
+                              ),
+                              _crearBoton(
+                                '%',
+                                grisClaro,
+                                Colors.black,
+                                alturaBoton,
+                              ),
+                              _crearBoton(
+                                '÷',
+                                naranja,
+                                Colors.white,
+                                alturaBoton,
+                              ),
+                            ],
                           ),
-                          _crearBoton(
-                            '+/-',
-                            grisClaro,
-                            Colors.black,
-                            alturaBoton,
+                        ),
+                        Expanded(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              _crearBoton(
+                                '7',
+                                grisOscuro,
+                                Colors.white,
+                                alturaBoton,
+                              ),
+                              _crearBoton(
+                                '8',
+                                grisOscuro,
+                                Colors.white,
+                                alturaBoton,
+                              ),
+                              _crearBoton(
+                                '9',
+                                grisOscuro,
+                                Colors.white,
+                                alturaBoton,
+                              ),
+                              _crearBoton(
+                                '×',
+                                naranja,
+                                Colors.white,
+                                alturaBoton,
+                              ),
+                            ],
                           ),
-                          _crearBoton(
-                            '%',
-                            grisClaro,
-                            Colors.black,
-                            alturaBoton,
+                        ),
+                        Expanded(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              _crearBoton(
+                                '4',
+                                grisOscuro,
+                                Colors.white,
+                                alturaBoton,
+                              ),
+                              _crearBoton(
+                                '5',
+                                grisOscuro,
+                                Colors.white,
+                                alturaBoton,
+                              ),
+                              _crearBoton(
+                                '6',
+                                grisOscuro,
+                                Colors.white,
+                                alturaBoton,
+                              ),
+                              _crearBoton(
+                                '-',
+                                naranja,
+                                Colors.white,
+                                alturaBoton,
+                              ),
+                            ],
                           ),
-                          _crearBoton('÷', naranja, Colors.white, alturaBoton),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          _crearBoton(
-                            '7',
-                            grisOscuro,
-                            Colors.white,
-                            alturaBoton,
+                        ),
+                        Expanded(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              _crearBoton(
+                                '1',
+                                grisOscuro,
+                                Colors.white,
+                                alturaBoton,
+                              ),
+                              _crearBoton(
+                                '2',
+                                grisOscuro,
+                                Colors.white,
+                                alturaBoton,
+                              ),
+                              _crearBoton(
+                                '3',
+                                grisOscuro,
+                                Colors.white,
+                                alturaBoton,
+                              ),
+                              _crearBoton(
+                                '+',
+                                naranja,
+                                Colors.white,
+                                alturaBoton,
+                              ),
+                            ],
                           ),
-                          _crearBoton(
-                            '8',
-                            grisOscuro,
-                            Colors.white,
-                            alturaBoton,
+                        ),
+                        Expanded(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              _crearBoton(
+                                '0',
+                                grisOscuro,
+                                Colors.white,
+                                alturaBoton,
+                                esDoble: true,
+                              ),
+                              _crearBoton(
+                                ',',
+                                grisOscuro,
+                                Colors.white,
+                                alturaBoton,
+                              ),
+                              _crearBoton(
+                                '=',
+                                naranja,
+                                Colors.white,
+                                alturaBoton,
+                              ),
+                            ],
                           ),
-                          _crearBoton(
-                            '9',
-                            grisOscuro,
-                            Colors.white,
-                            alturaBoton,
-                          ),
-                          _crearBoton('×', naranja, Colors.white, alturaBoton),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          _crearBoton(
-                            '4',
-                            grisOscuro,
-                            Colors.white,
-                            alturaBoton,
-                          ),
-                          _crearBoton(
-                            '5',
-                            grisOscuro,
-                            Colors.white,
-                            alturaBoton,
-                          ),
-                          _crearBoton(
-                            '6',
-                            grisOscuro,
-                            Colors.white,
-                            alturaBoton,
-                          ),
-                          _crearBoton('-', naranja, Colors.white, alturaBoton),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          _crearBoton(
-                            '1',
-                            grisOscuro,
-                            Colors.white,
-                            alturaBoton,
-                          ),
-                          _crearBoton(
-                            '2',
-                            grisOscuro,
-                            Colors.white,
-                            alturaBoton,
-                          ),
-                          _crearBoton(
-                            '3',
-                            grisOscuro,
-                            Colors.white,
-                            alturaBoton,
-                          ),
-                          _crearBoton('+', naranja, Colors.white, alturaBoton),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          _crearBoton(
-                            '0',
-                            grisOscuro,
-                            Colors.white,
-                            alturaBoton,
-                            esDoble: true,
-                          ),
-                          _crearBoton(
-                            ',',
-                            grisOscuro,
-                            Colors.white,
-                            alturaBoton,
-                          ),
-                          _crearBoton('=', naranja, Colors.white, alturaBoton),
-                        ],
-                      ),
-                    ],
-                  );
-                },
+                        ),
+                      ],
+                    );
+                  },
+                ),
               ),
             ],
           ),
